@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Enkindle</title>
+    <link href="{{ url_for('static', filename='semantic/collections/menu.css') }}" rel="stylesheet" type="text/css" media="all">
+    <link href="{{ url_for('static', filename='semantic/collections/grid.css') }}" rel="stylesheet" type="text/css" media="all">
+    <link href="{{ url_for('static', filename='app.css') }}" rel="stylesheet" type="text/css" media="all">
+  </head>
+  <body>
+    <div id="menu" class="ui inverted menu">
+      <a class="item" href="#"><i class="home icon"></i> Enkindle</a>
+    </div>
+    <div id="countdown">
+      <h1>14 days</h1>
+      <subtitle>to end of Milestone 1</subtitle>
+    </div>
+    <script language="javascript" type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script language="javascript" type="text/javascript" src="{{ url_for('static', filename='js/jquery.flot.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(function() {
+          var d5 = [];
+          d5.push([0, 30]);
+          d5.push([1, 25]);
+          d5.push([2, 20]);
+          d5.push([3, 15]);
+          d5.push([4, 10]);
+          d5.push([5, 5]);
+          d5.push([6, 0]);
+
+          $.plot("#graph-placeholder", [
+          {
+            data: d5,
+            lines: { show: true },
+            points: { show: true }
+          }
+          ]);
+        });
+    </script>
+
+    <div id="graph">
+      <h3>Burndown Chart</h3>
+      <p class="label left">Points</p>
+      <div id="graph-placeholder"></div>
+      <p class="label right">Days</p>
+    </div>
+
+  </body>
+</html>

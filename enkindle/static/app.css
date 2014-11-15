@@ -1,0 +1,48 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Helvetica, Arial, 'sans-serif';
+}
+
+#countdown {
+  width: 100%;
+  font-size: 2.5em;
+  text-align: center;
+}
+
+#menu {
+  text-align: center;
+  font-size: 2em;
+}
+
+#countdown h1 {
+  font-weight: 100;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+#countdown subtitle {
+  font-weight: lighter;
+  color: #999;
+}
+
+#graph {
+  margin-top: 50px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#graph-placeholder {
+  min-height: 300px;
+}
+
+
+p.label {
+  color: #999;
+  font-size: 0.75em;
+}
+
+p.left { text-align: left; }
+p.right { text-align: right; }
