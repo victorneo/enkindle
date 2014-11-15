@@ -13,8 +13,8 @@
       <a class="item" href="#"><i class="home icon"></i> Enkindle</a>
     </div>
     <div id="countdown">
-      <h1>14 days</h1>
-      <subtitle>to end of Milestone 1</subtitle>
+      <h1>{{ (sprint.milestone.deadline - today).days }} days</h1>
+      <subtitle>to end of Sprint 1</subtitle>
     </div>
     {% assets filters="jsmin", output="_gen/packed.js", "js/jquery.min.js", "js/jquery.flot.min.js"%}
       <script type="text/javascript" src="{{ ASSET_URL }}"></script>
