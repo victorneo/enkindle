@@ -19,6 +19,8 @@ class Sprint(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     number = db.Column(db.Integer, nullable=False)
     points = db.Column(db.Integer, nullable=False)
+    start_date = db.Column(db.Date, nullable=False)
+    end_date = db.Column(db.Date, nullable=False)
     milestone_id = db.Column(db.Integer, db.ForeignKey('milestone.id'))
     burns = db.relationship('Burn', backref='sprint')
 

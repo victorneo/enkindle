@@ -22,18 +22,22 @@
 
     <script type="text/javascript">
         $(function() {
-          var d5 = [];
-          d5.push([0, 30]);
-          d5.push([1, 25]);
-          d5.push([2, 20]);
-          d5.push([3, 15]);
-          d5.push([4, 10]);
-          d5.push([5, 5]);
-          d5.push([6, 0]);
+          var optimal_data = [],
+              burn_data = [];
+          {% for p in optimal %}
+          optimal_data.push([{{ loop.index0 }}, {{ p }}]);{% endfor %}
+
+          {% for b in burns %}
+          burn_data.push([{{ loop.index0 }}, {{ b }}]);{% endfor %}
 
           $.plot("#graph-placeholder", [
           {
-            data: d5,
+            data: optimal_data,
+            lines: { show: true },
+            points: { show: true }
+          },
+          {
+            data: burn_data,
             lines: { show: true },
             points: { show: true }
           }
@@ -42,7 +46,7 @@
     </script>
 
     <div id="graph">
-      <h3>Burndown Chart</h3>
+      <h3>Burndown Chart ({{ sprint.start_date }} to {{ sprint.end_date }})</h3>
       <p class="label left">Points</p>
       <div id="graph-placeholder"></div>
       <p class="label right">Days</p>

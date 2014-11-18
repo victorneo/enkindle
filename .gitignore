@@ -53,6 +53,9 @@ docs/_build/
 # PyBuilder
 target/
 
+# SQLite DB
+*.db
+
 # Static assets
 .webassets-cache
 _gen
