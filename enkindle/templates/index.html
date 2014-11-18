@@ -3,44 +3,50 @@
   <head>
     <meta charset="UTF-8">
     <title>Enkindle</title>
-    <link href="{{ url_for('static', filename='semantic/collections/menu.css') }}" rel="stylesheet" type="text/css" media="all">
-    <link href="{{ url_for('static', filename='semantic/collections/grid.css') }}" rel="stylesheet" type="text/css" media="all">
-    <link href="{{ url_for('static', filename='app.css') }}" rel="stylesheet" type="text/css" media="all">
+    {% assets filters="cssmin", output="_gen/packed.css", "css/semantic/collections/menu.css",
+                      "css/semantic/collections/grid.css", "css/app.css" %}
+    <link href="{{ ASSET_URL }}" rel="stylesheet" type="text/css" media="all">
+    {% endassets %}
   </head>
   <body>
     <div id="menu" class="ui inverted menu">
       <a class="item" href="#"><i class="home icon"></i> Enkindle</a>
     </div>
     <div id="countdown">
-      <h1>14 days</h1>
-      <subtitle>to end of Milestone 1</subtitle>
+      <h1>{{ (sprint.milestone.deadline - today).days }} days</h1>
+      <subtitle>to end of Sprint 1</subtitle>
     </div>
-    <script language="javascript" type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-    <script language="javascript" type="text/javascript" src="{{ url_for('static', filename='js/jquery.flot.min.js') }}"></script>
+    {% assets filters="jsmin", output="_gen/packed.js", "js/jquery.min.js", "js/jquery.flot.min.js"%}
+      <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
 
     <script type="text/javascript">
         $(function() {
-          var d5 = [];
-          d5.push([0, 30]);
-          d5.push([1, 25]);
-          d5.push([2, 20]);
-          d5.push([3, 15]);
-          d5.push([4, 10]);
-          d5.push([5, 5]);
-          d5.push([6, 0]);
+          var optimal_data = [],
+              burn_data = [];
+          {% for p in optimal %}
+          optimal_data.push([{{ loop.index0 }}, {{ p }}]);{% endfor %}
+
+          {% for b in burns %}
+          burn_data.push([{{ loop.index0 }}, {{ b }}]);{% endfor %}
 
           $.plot("#graph-placeholder", [
           {
-            data: d5,
+            data: optimal_data,
             lines: { show: true },
             points: { show: true }
-          }
+          },
+          {
+            data: burn_data,
+            lines: { show: true, fill: true },
+            points: { show: true },
+          },
           ]);
         });
     </script>
 
     <div id="graph">
-      <h3>Burndown Chart</h3>
+      <h3>Burndown Chart ({{ sprint.start_date }} to {{ sprint.end_date }})</h3>
       <p class="label left">Points</p>
       <div id="graph-placeholder"></div>
       <p class="label right">Days</p>
