@@ -12,7 +12,7 @@ views = Blueprint('views', __name__, template_folder='templates')
 def index():
     d = date.today()
     s = Sprint.query.order_by(desc(Sprint.number))\
-              .options(joinedload('burns'), joinedload('milestone'))\
+              .options(joinedload('burns'))\
               .first()
 
     optimal = []

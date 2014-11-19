@@ -13,7 +13,7 @@
       <a class="item" href="#"><i class="home icon"></i> Enkindle</a>
     </div>
     <div id="countdown">
-      <h1>{{ (sprint.milestone.deadline - today).days }} days</h1>
+      <h1>{{ (sprint.end_date - today).days }} days</h1>
       <subtitle>to end of Sprint 1</subtitle>
     </div>
     {% assets filters="jsmin", output="_gen/packed.js", "js/jquery.min.js", "js/jquery.flot.min.js"%}
@@ -22,13 +22,8 @@
 
     <script type="text/javascript">
         $(function() {
-          var optimal_data = [],
-              burn_data = [];
-          {% for p in optimal %}
-          optimal_data.push([{{ loop.index0 }}, {{ p }}]);{% endfor %}
-
-          {% for b in burns %}
-          burn_data.push([{{ loop.index0 }}, {{ b }}]);{% endfor %}
+          var optimal_data = [{% for p in optimal %}[{{ loop.index0 }}, {{ p }}],{% endfor %}],
+              burn_data = [{% for b in burns %}[{{ loop.index0 }}, {{ b }}],{% endfor %}];
 
           $.plot("#graph-placeholder", [
           {

@@ -1,7 +1,7 @@
 Enkindle
 ========
 
-Flask web-app to display milestone deadline and burndown chart for the current sprint.
+Flask web-app to display deadline and burndown chart for the current sprint.
 
 Coming soon.
 
