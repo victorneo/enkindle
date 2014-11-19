@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Enkindle</title>
     {% assets filters="cssmin", output="_gen/packed.css", "css/semantic/collections/menu.css",
                       "css/semantic/collections/grid.css", "css/app.css" %}
@@ -16,6 +17,14 @@
       <h1>{{ (sprint.end_date - today).days }} days</h1>
       <subtitle>to end of Sprint 1</subtitle>
     </div>
+
+    <div id="graph">
+      <h3>Burndown Chart<br />({{ sprint.start_date }} to {{ sprint.end_date }})</h3>
+      <p class="label left">Points</p>
+      <div id="graph-placeholder"></div>
+      <p class="label right">Days</p>
+    </div>
+
     {% assets filters="jsmin", output="_gen/packed.js", "js/jquery.min.js", "js/jquery.flot.min.js"%}
       <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
@@ -39,13 +48,6 @@
           ]);
         });
     </script>
-
-    <div id="graph">
-      <h3>Burndown Chart ({{ sprint.start_date }} to {{ sprint.end_date }})</h3>
-      <p class="label left">Points</p>
-      <div id="graph-placeholder"></div>
-      <p class="label right">Days</p>
-    </div>
 
   </body>
 </html>

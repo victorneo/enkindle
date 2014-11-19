@@ -27,8 +27,8 @@ body {
 }
 
 #graph {
-  margin-top: 50px;
-  width: 50%;
+  margin-top: 30px;
+  width: 75%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -46,3 +46,16 @@ p.label {
 
 p.left { text-align: left; }
 p.right { text-align: right; }
+
+
+@media (max-width: 1024px) {
+  #countdown {
+    font-size: 1.3em;
+  }
+
+  #graph {
+    font-size: 1em;
+    width: 90%;
+    margin-top: 10px;
+  }
+}
