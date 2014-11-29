@@ -11,14 +11,13 @@ class Sprint(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     number = db.Column(db.Integer, nullable=False)
     points = db.Column(db.Float, nullable=False)
-    start_date = db.Column(db.Date, nullable=False)
-    end_date = db.Column(db.Date, nullable=False)
+    days = db.Column(db.Integer, nullable=False)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
     burns = db.relationship('Burn', backref='sprint')
 
 
 class Burn(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Date, nullable=False)
+    day = db.Column(db.Integer, nullable=False)
     points = db.Column(db.Float, nullable=False)
     sprint_id = db.Column(db.Integer, db.ForeignKey('sprint.id'))

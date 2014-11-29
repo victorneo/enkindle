@@ -14,12 +14,11 @@
       <a class="item" href="#"><i class="home icon"></i> Enkindle</a>
     </div>
     <div id="countdown">
-      <h1>{{ (sprint.end_date - today).days }} days</h1>
-      <subtitle>to end of Sprint 1</subtitle>
+      <h1>Sprint {{ sprint.number }}</h1>
     </div>
 
     <div id="graph">
-      <h3>Burndown Chart<br />({{ sprint.start_date }} to {{ sprint.end_date }})</h3>
+      <h3>Burndown Chart<br /></h3>
       <p class="label left">Points</p>
       <div id="graph-placeholder"></div>
       <p class="label right">Days</p>
